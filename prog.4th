@@ -1,11 +1,4 @@
 1 2 dup drop swap over .s .
-1 2 + - * / mod .s .
-1 1 = .
-1 2 < .
-2 2 <= .
-3 2 > .
-1 2 >= .
-3 2 and .
-3 2 or .
-3 3 not . .s
+1 2 + - * / .s .
+1 1 18 65 12 8 5 19 = < <= > >= and or not .s .
 8 test .s

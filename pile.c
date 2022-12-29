@@ -1,5 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "memoire.h"
 #include "pile.h"
+
+#define HAUTEUR_MAX 1024
 
 struct sCellule
 {
@@ -42,7 +47,8 @@ unsigned int HauteurPile(Pile p)
 
 void Empiler(Pile p, int Elt)
 {
-    if( p->Hauteur < HAUTEUR_MAX )
+    if( PilePleine(p) ) ExitOnError("Désolé mais la pile est pleine.");
+    else
     {
         p->Hauteur++;
         p->Vide = false;
@@ -51,11 +57,8 @@ void Empiler(Pile p, int Elt)
 
         cell->Suivant = p->Sommet;
         p->Sommet = cell;
-    }
-    else
-    {
-        p->Pleine = true;
-        ExitOnError("Désolé mais la pile est vide.");
+
+        if( HauteurPile(p) >= HAUTEUR_MAX ) p->Pleine = true;
     }
 }
 
@@ -67,7 +70,12 @@ int SommetPile(Pile p)
 
 int Depiler(Pile p)
 {
-    if( PileVide(p) ) ExitOnError("Peut pas dépiler si pile vide, désolé.");
+    /*printf("Hauteur: %d\n", HauteurPile(p));*/
+    if( PileVide(p) )
+    {
+        ExitOnError("Peut pas dépiler si pile vide, désolé.");
+        return 0;
+    }
     else
     {
         int sommetVal = SommetPile(p);

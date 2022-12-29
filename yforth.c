@@ -2,11 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+
 #include "memoire.h"
 #include "lecture.h"
 #include "pile.h"
 
-void OperationsPile(Pile pile, char *currentMot)
+static void OperationsPile(Pile pile, char *currentMot)
 {
     if( isdigit(currentMot[0]) ) Empiler(pile, (int)strtol(currentMot, (char **)NULL, 10));
     else if( strcmp(currentMot, ".s") == 0 ) AfficherPile(pile);

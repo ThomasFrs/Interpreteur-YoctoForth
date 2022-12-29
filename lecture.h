@@ -1,14 +1,7 @@
 #ifndef __LECTURE_H__
 #define __LECTURE_H__
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "memoire.h"
-
-#define TAILLE_MOT_MAX 31
-#define NB_MOTS_MAX 2048
-
-struct sProgramme;
 
 typedef struct sProgramme *Programme;
 

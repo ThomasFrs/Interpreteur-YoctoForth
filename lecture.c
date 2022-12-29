@@ -1,4 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lecture.h"
+
+#define TAILLE_MOT_MAX 31
+#define NB_MOTS_MAX 2048
 
 struct sProgramme
 {

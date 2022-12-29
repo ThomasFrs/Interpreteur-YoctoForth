@@ -1,11 +1,6 @@
 #ifndef __PILE_H__
 #define __PILE_H__
-
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-#define HAUTEUR_MAX 1024
 
 typedef struct sPile *Pile;
 
