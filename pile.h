@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define HAUTEUR_MAX 1024
 
@@ -25,5 +26,7 @@ extern int Depiler(Pile p);
 extern void AfficherPile(Pile p);
 
 extern void LibererPile(Pile p);
+
+extern void ExitOnError(char *exitMessage);
 
 #endif

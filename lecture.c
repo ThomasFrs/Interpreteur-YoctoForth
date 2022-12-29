@@ -37,6 +37,8 @@ Programme LectureProg(char NomFichier[])
     }
     Liberer(prog->TabMots[Mots-1]);
     prog->NbMots = Mots-1;
+
+    fclose(fichier);
     return prog;
 }
 

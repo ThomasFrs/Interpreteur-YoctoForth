@@ -55,6 +55,7 @@ void Empiler(Pile p, int Elt)
     else
     {
         p->Pleine = true;
+        ExitOnError("Désolé mais la pile est vide.");
     }
 }
 
@@ -66,7 +67,7 @@ int SommetPile(Pile p)
 
 int Depiler(Pile p)
 {
-    if( PileVide(p) ) return 0;
+    if( PileVide(p) ) ExitOnError("Peut pas dépiler si pile vide, désolé.");
     else
     {
         int sommetVal = SommetPile(p);
@@ -74,6 +75,7 @@ int Depiler(Pile p)
         Liberer(p->Sommet);
         p->Sommet = pSommet;
         if( p->Sommet == NULL ) p->Vide = true;
+        p->Hauteur--;
 
         return sommetVal;
     }
@@ -81,13 +83,16 @@ int Depiler(Pile p)
 
 void AfficherPile(Pile p)
 {
-    printf("<%d> ", p->Hauteur);
-
-    struct sCellule *currentCell = p->Sommet;
-    for( int i=0; i<(int)p->Hauteur; i++ ) 
+    Pile tempPile = CreerPile();
+    int tempElt, hauteurPile = (int)HauteurPile(p);
+   
+    printf("<%d> ", hauteurPile);
+    for( int i=0; i<hauteurPile; i++ ) Empiler(tempPile, Depiler(p));
+    for( int i=0; i<hauteurPile; i++ )
     {
-        printf("%d ", currentCell->Valeur);
-        currentCell = currentCell->Suivant;
+        tempElt = Depiler(tempPile);
+        printf("%d ", tempElt);
+        Empiler(p, tempElt);
     }
 }
 
@@ -102,4 +107,10 @@ void LibererPile(Pile p)
     }
     Liberer(currentCell); // on libere la derniere cellule
     Liberer(p); 
+}
+
+void ExitOnError(char *errorMessage)
+{
+        fprintf(stderr, "%s Aborting execution.\n", errorMessage);
+        exit(EXIT_FAILURE);
 }
